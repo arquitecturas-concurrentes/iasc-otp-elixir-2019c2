@@ -2,6 +2,13 @@ defmodule RESTServer do
   use GenServer
 
   ## Client API
+  # Insert this start_link/2 method, which intercepts the extra `[]`
+  # argument from the Supervisor and molds it back to correct form.
+  def start_link([], name) do
+    start_link(name)
+  end
+
+  #start_link/1
   def start_link(name) do
     GenServer.start_link(__MODULE__, :ok, [name: name])
   end

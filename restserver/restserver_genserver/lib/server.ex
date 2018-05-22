@@ -7,6 +7,8 @@ defmodule Server do
     {:ok, pid}
   end
 
+
+  # helper functions
   def get(server, url) do
     ref = make_ref
     send server, {self, ref, {:get, url}}
