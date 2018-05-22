@@ -4,7 +4,7 @@ defmodule RESTServer.Supervisor.Mixfile do
   def project do
     [app: :restserver_supervisor,
      version: "0.0.1",
-     elixir: "~> 1.5",
+     elixir: "~> 1.6",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps]

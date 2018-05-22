@@ -2,9 +2,9 @@ defmodule ServerTestTest do
   use ExUnit.Case
 
   test "start supervised worker" do
-    {:ok, sup_pid} = RESTServer.Supervisor.start_link
+    {:ok, sup_pid} = RESTServer.Supervisor.start_link :server
 
-    {:ok, worker_pid} = Supervisor.start_child(sup_pid, [:server])
+    {:ok, worker_pid} = Supervisor.start_child(sup_pid, [])
 
     assert RESTServer.get(:server, "/document") == {:ok, :not_found}
 
@@ -14,9 +14,9 @@ defmodule ServerTestTest do
   end
 
   test "broke supervised worker" do
-    {:ok, sup_pid} = RESTServer.Supervisor.start_link
+    {:ok, sup_pid} = RESTServer.Supervisor.start_link :server
 
-    {:ok, worker_pid} = Supervisor.start_child(sup_pid, [:server])
+    {:ok, worker_pid} = Supervisor.start_child(sup_pid, [])
 
     # Finish the server in an abnormal way
     GenServer.stop(:server, :kill)

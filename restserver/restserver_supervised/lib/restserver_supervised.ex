@@ -3,8 +3,8 @@ defmodule RESTServer.Supervisor do
 
   ## Client API
 
-  def start_link do
-    Supervisor.start_link(__MODULE__, [])
+  def start_link(name) do
+    Supervisor.start_link(__MODULE__, name, name: __MODULE__)
   end
 
   def start_restserver(sup, state \\ []) do
@@ -14,12 +14,23 @@ defmodule RESTServer.Supervisor do
 
   ## Server Callbacks
 
-  def init([]) do
+  @impl true
+  def init(name) do
+    #Supervised.Spec now deprcated
+    #children = [
+    #  worker(RESTServer, [], restart: :transient)
+    #]
+
     children = [
-      worker(RESTServer, [], restart: :transient)
+      # The Stack is a child started via Stack.start_link([:hello])
+      %{
+        id: MyRESTServer,
+        start: {RESTServer, :start_link, [name]},
+        restart: :transient
+      }
     ]
 
-    supervise(children, strategy: :simple_one_for_one)
+    Supervisor.init(children, strategy: :simple_one_for_one)
     ##supervise(children, strategy: :simple_one_for_one, max_restarts: 3, max_seconds: 5)
   end
 

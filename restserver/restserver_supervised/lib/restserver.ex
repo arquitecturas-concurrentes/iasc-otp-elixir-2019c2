@@ -2,6 +2,10 @@ defmodule RESTServer do
   use GenServer
 
   ## Client API
+  def start_link([], name) do
+    start_link(name)
+  end
+
   def start_link(name) do
     GenServer.start_link(__MODULE__, :ok, [name: name])
   end
