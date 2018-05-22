@@ -12,6 +12,10 @@ defmodule RESTServer.Supervisor do
     pid
   end
 
+  def children(sup) do
+    Supervisor.which_children(sup)
+  end
+
   ## Server Callbacks
 
   @impl true
