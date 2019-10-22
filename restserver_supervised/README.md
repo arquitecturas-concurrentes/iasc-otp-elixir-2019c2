@@ -17,3 +17,19 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
         def application do
           [applications: [:restserver_supervised]]
         end
+
+## How to use it 
+
+```elixir
+{:ok, sup_pid} = RESTServer.Supervisor.start_link :server
+```
+
+RESTServer.get(:server, "/document")
+RESTServer.post(:server, "/document", "aaa")
+RESTServer.get(:server, "/document")
+
+Process.whereis(:server)
+
+Process.alive?(Process.whereis(:server))
+
+GenServer.stop(:server, :kill)
