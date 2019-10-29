@@ -20,7 +20,7 @@ If a child process terminates, the rest of the child processes (that is, the chi
 
 
 ### Simple_one_for_one
-A `:simple_one_for_one` strategy is an enhancement of the standard `:one_for_one strategy` (which restarts a single replacement for every failed process), only it uses a single child spec for each of its new processes. This effectively makes each new worker an instance of the same process [(there’s more on the strategy in the Erlang documentation)](http://erlang.org/doc/design_principles/sup_princ.html#simple).
+A `:simple_one_for_one` strategy is an enhancement of the standard `:one_for_one strategy` (which restarts a single replacement for every failed process), only it uses a single child spec for each of its new processes. This effectively makes each new worker an instance of the same process [(there’s more on the strategy in the Erlang documentation)](http://erlang.org/doc/design_principles/sup_princ.html#simple). This strategy has been deprecated in favor for Dynamic Supervision schema.
 
 ## Deprecation of Supervisor.Spec
 
